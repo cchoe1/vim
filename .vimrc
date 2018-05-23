@@ -33,9 +33,7 @@ set number
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
-set foldlevel=2
-
-set omnifunc=htmlcomplete#CompleteTags
+set foldlevel=1
 
 """""""""""""""""""
 " Local Settings
