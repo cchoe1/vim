@@ -1,10 +1,15 @@
 filetype plugin indent on
 syntax on
+syntax enable
+set background=light
+colorscheme PaperColor
 
 """""""""""""""""""
 " Settings
 "
 set autoindent
+set smarttab
+set smartindent
 set ruler
 set tabstop=4
 set shiftwidth=4
@@ -21,18 +26,43 @@ set magic
 set showmatch 
 set mat=2
 set tm=500
+
 set foldcolumn=1
 set laststatus=1
+set number
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
+set omnifunc=htmlcomplete#CompleteTags
+
+"""""""""""""""""""
+" Local Settings
+"
+au BufRead,BufNewFile,BufEnter ~/Documents/bjo/dev/beef-jerky-outlet/ setlocal ts=2 sts=2 sw=2 st ai si
 
 """""""""""""""""""
 " Key Mappings
 "
-map <space> /
-map <c-space> ?
+nmap <space> /
 nmap nn :NERDTreeToggle<CR>
+nmap <C-c> <Esc>
+inoremap <C-c> <Esc>
+nnoremap <C-c> <Esc>
+map <F4> :edit
 
 """""""""""""""""""
 " Random misc stuff
 "
 execute pathogen#infect()
 call pathogen#helptags()
+
+"""""""""""""""""""
+" Ruler Styles
+"
+highlight LineNr term=bold cterm=NONE ctermfg=Black ctermbg=NONE gui=NONE guifg=Black guibg=NONE
+
+""""""""""""""""""
+" NERDTree related
+"
