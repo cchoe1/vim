@@ -1,9 +1,11 @@
 filetype plugin indent on
 syntax on
 syntax enable
-set background=light
-colorscheme PaperColor
+set background=dark
+colorscheme Monokai
 
+hi StatusLine ctermfg=0 ctermbg=DarkRed cterm=NONE
+hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE
 """""""""""""""""""
 " Settings
 "
@@ -33,7 +35,7 @@ set number
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
-set foldlevel=1
+set foldlevel=2
 
 """""""""""""""""""
 " Local Settings
@@ -48,7 +50,19 @@ nmap nn :NERDTreeToggle<CR>
 nmap <C-c> <Esc>
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
-map <F4> :edit
+
+"""""""""""""""""
+" Bind gb to move backwards in tabs
+"
+nmap gb gT
+
+""""""""""""""""""
+" Resize splits
+"
+nmap vv- :vertical res -10<CR>
+nmap vv+ :vertical res +10<CR>
+nmap H- :res -10<CR>
+nmap H+ :res +10<CR>
 
 """""""""""""""""""
 " Random misc stuff
@@ -59,7 +73,7 @@ call pathogen#helptags()
 """""""""""""""""""
 " Ruler Styles
 "
-highlight LineNr term=bold cterm=NONE ctermfg=Black ctermbg=NONE gui=NONE guifg=Black guibg=NONE
+highlight LineNr term=bold cterm=NONE ctermfg=Green ctermbg=NONE gui=NONE guifg=Green guibg=NONE
 
 """"""""""""""""""
 " NERDTree related
