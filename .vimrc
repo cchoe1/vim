@@ -149,22 +149,33 @@ let g:vdebug_options = {'break_on_open': 0}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '9001'}
 
+"""""""""""""""""
 " Bind alt + movement keys to move in insert mode
-inoremap ˙ <Left>
-inoremap ∆ <Down>
-inoremap ˚ <Up>
-inoremap ¬ <Right>
-cnoremap ˙ <Left>
-cnoremap ∆ <Down>
-cnoremap ˚ <Up>
-cnoremap ¬ <Right>
+"
+    " Required for mac
+    inoremap ˙ <Left>
+    inoremap ∆ <Down>
+    inoremap ˚ <Up>
+    inoremap ¬ <Right>
+    cnoremap ˙ <Left>
+    cnoremap ∆ <Down>
+    cnoremap ˚ <Up>
+    cnoremap ¬ <Right>
+    
+    " Required for Linux
+    inoremap <M-h> <Left>
+    inoremap <M-j> <Down>
+    inoremap <M-k> <Up>
+    inoremap <M-l> <Right>
 
-" Fix for Linux where Alt - key breaks out of insert mode
-for i in range(97,122)
-  let c = nr2char(i)
-  exec "map \e".c." <M-".c.">"
-  exec "map! \e".c." <M-".c.">"
-endfor
+    " Fix for Linux where Alt - key breaks out of insert mode
+    for i in range(97,122)
+      let c = nr2char(i)
+      exec "map \e".c." <M-".c.">"
+      exec "map! \e".c." <M-".c.">"
+    endfor
+"""""""""""""""""
+
 
 
 " vim: set noexpandtab:
@@ -264,8 +275,8 @@ endif
 
 
 """""""""""""""""""
-"""""""""""""""""""
-"""""""""""""""""""
+" DiffSaved
+"
 function! s:DiffWithSaved()
   let filetype=&ft
   diffthis
