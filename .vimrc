@@ -84,11 +84,6 @@ set magic
 set showmatch 
 set mat=2
 set tm=500
-"set cursorline
-
-
-" Set vim bash to use login shell
-
 
 set foldcolumn=1
 set laststatus=1
@@ -114,6 +109,7 @@ nnoremap <C-c> <Esc>
 nmap nh :noh<CR>
 
 set pastetoggle=<C-P>
+
 """""""""""""""""
 " Bind gb to move backwards in tabs
 "
