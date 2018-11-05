@@ -26,6 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -96,7 +97,6 @@ set foldlevel=2
 """""""""""""""""""
 " Localized Settings
 "
-au BufRead,BufNewFile,BufEnter ~/Documents/bjo/dev/beef-jerky-outlet/ setlocal ts=2 sts=2 sw=2 st ai si et
 
 """""""""""""""""""
 " Key Mappings
@@ -152,15 +152,15 @@ let g:vdebug_options = {'port': '9001'}
 """""""""""""""""
 " Bind alt + movement keys to move in insert mode
 "
-    " Required for mac
-    inoremap ˙ <Left>
-    inoremap ∆ <Down>
+    inoremap ˍ <Left>
+    inoremap ˝ <Down>
     inoremap ˚ <Up>
-    inoremap ¬ <Right>
-    cnoremap ˙ <Left>
-    cnoremap ∆ <Down>
+    inoremap - <Right>
+    cnoremap ˍ <Left>
+    cnoremap ˝ <Down>
     cnoremap ˚ <Up>
-    cnoremap ¬ <Right>
+    cnoremap - <Right>
+
     
     " Required for Linux
     inoremap <M-h> <Left>
@@ -168,12 +168,6 @@ let g:vdebug_options = {'port': '9001'}
     inoremap <M-k> <Up>
     inoremap <M-l> <Right>
 
-    " Fix for Linux where Alt - key breaks out of insert mode
-    for i in range(97,122)
-      let c = nr2char(i)
-      exec "map \e".c." <M-".c.">"
-      exec "map! \e".c." <M-".c.">"
-    endfor
 """""""""""""""""
 
 
@@ -274,17 +268,6 @@ if version >= 508 || !exists("did_twig_syn_inits")
 endif
 
 
-"""""""""""""""""""
-" DiffSaved
-"
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
 
 let g:reopenbuf = expand('%:p')
 function! ReopenLastTabLeave()
@@ -306,4 +289,3 @@ augroup ReopenLastTab
   autocmd TabEnter * call ReopenLastTabEnter()
 augroup END
 " Tab Restore
-nnoremap <leader>tr :call ReopenLastTab()<CR>
