@@ -1,24 +1,30 @@
-if $HOME=='/root'
-  if $USER=='root'
-    if isdirectory('/home/your_typical_username')
-      let rtuser = 'your_typical_username'
-    elseif isdirectory('/home/your_other_username')
-      let rtuser = 'your_other_username'
-    endif
-  else
-    let rtuser = $USER
-  endif
-  let &runtimepath = substitute(&runtimepath, $HOME, '/home/'.rtuser, 'g')
-endif
+"if $HOME=='/root'
+"  if $USER=='root'
+"    if isdirectory('/Users/home/Calvin')
+"      let rtuser = 'Calvin'
+"    elseif isdirectory('/home/Calvin')
+"      let rtuser = 'Calvin'
+"    endif
+"  else
+"    let rtuser = $USER
+"  endif
+"  let &runtimepath = substitute(&runtimepath, $HOME, '/home/'.rtuser, 'g')
+"endif
 
 filetype plugin indent on
 syntax on
 syntax enable
 colorscheme desert
 
+:command Cal Calendar
+
 """""""""""""""""""
 " Settings
 "
+let g:calendar_task_delete = 1
+let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
+
 set autoindent
 set smarttab
 set smartindent
@@ -99,14 +105,20 @@ hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE
 "
 "
 
-let g:vdebug_options = {'ide_key': 'xdebug'}
-let g:vdebug_options = {'idekey': 'xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
-"let g:vdebug_options = {'server': 'localhost'}
-"let g:vdebug_options = {'port': '32774'}
-"
-let g:vdebug_options = {'server': 'localhost'}
-let g:vdebug_options = {'port': '9001'}
+let g:vdebug_options = {}
+let g:vdebug_options['ide_key'] = 'xdebug'
+let g:vdebug_options['idekey'] = 'xdebug'
+let g:vdebug_options['background_listener'] = 1
+let g:vdebug_options['break_on_open'] = 0
+let g:vdebug_options['server'] = 'localhost'
+let g:vdebug_options['port'] =  '9000'
+let g:vdebug_options['auto_start'] = 1
+let g:vdebug_options['remote_autostart'] = 1
+let g:vdebug_options['remote_connect_back'] = 1
+let g:vdebug_options['path_maps'] = {
+  \'/app': "/Users/Calvin/Desktop/IMPORTANT/bjo/dev/beef-jerky-outlet/app/"
+\}
+
 
 " Bind alt + movement keys to move in insert mode
 inoremap ˙ <Left>
