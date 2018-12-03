@@ -1,47 +1,25 @@
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+let g:calendar_task_delete = 1
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+"""""""""""""""""""""""
+" Vundle 
+call vundle#begin()
+
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'scrooloose/nerdtree'
+Plugin 'vim-vdebug/vdebug'
+Plugin 'itchyny/calendar.vim'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 
 if $HOME=='/root'
@@ -60,7 +38,7 @@ endif
 filetype plugin indent on
 syntax on
 syntax enable
-colorscheme desert
+colorscheme peachpuff
 
 """""""""""""""""""
 " Settings
@@ -69,8 +47,8 @@ set autoindent
 set smarttab
 set smartindent
 set ruler
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set cmdheight=2
 set hid
@@ -126,8 +104,6 @@ nmap H+ :res +10<CR>
 """""""""""""""""""
 " Random misc stuff
 "
-execute pathogen#infect()
-call pathogen#helptags()
 
 """""""""""""""""""
 " Highlights
@@ -140,33 +116,51 @@ hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE
 "
 "
 
-let g:vdebug_options = {'ide_key': 'xdebug'}
-let g:vdebug_options = {'idekey': 'xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
+let g:vdebug_options = {}
+let g:vdebug_options['background_listener'] = 1
+let g:vdebug_options['ide_key'] = 'xdebug'
+let g:vdebug_options['idekey'] = 'xdebug'
+let g:vdebug_options['break_on_open'] = 1
 "let g:vdebug_options = {'server': 'localhost'}
 "let g:vdebug_options = {'port': '32774'}
 "
-let g:vdebug_options = {'server': 'localhost'}
-let g:vdebug_options = {'port': '9001'}
+let g:vdebug_options['server'] = 'localhost'
+let g:vdebug_options['port'] = '9000'
+let g:vdebug_options['auto_start'] = 1
+let g:vdebug_options['remote_autostart'] = 1
+let g:vdebug_options['remote_connect_back'] = 1
+
+let webroot='/Users/cchoe/Sites/hargray'
+let g:vdebug_options['path_maps'] = {
+            \'/app/': "/Users/cchoe/Sites/hargray/hargray.com/",
+            \'/app/web/modules/custom/hc_admin/': "/Users/cchoe/Sites/hargray/hargray.com/web/modules/custom/hc_admin/"
+            \}
+
+execute pathogen#infect()
+call pathogen#helptags()
+
+source ~/.vim/plugin/php-doc.vim
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR>
 
 """""""""""""""""
 " Bind alt + movement keys to move in insert mode
 "
-    inoremap ˍ <Left>
-    inoremap ˝ <Down>
-    inoremap ˚ <Up>
-    inoremap - <Right>
-    cnoremap ˍ <Left>
-    cnoremap ˝ <Down>
-    cnoremap ˚ <Up>
-    cnoremap - <Right>
+    "inoremap ˍ <Left>
+    "inoremap ˝ <Down>
+    "inoremap ˚ <Up>
+    "inoremap - <Right>
+    "cnoremap ˍ <Left>
+    "cnoremap ˝ <Down>
+    "cnoremap ˚ <Up>
+    "cnoremap - <Right>
 
-    
     " Required for Linux
-    inoremap <M-h> <Left>
-    inoremap <M-j> <Down>
-    inoremap <M-k> <Up>
-    inoremap <M-l> <Right>
+    "inoremap <M-h> <Left><C
+    "inoremap <M-j> <Down><Esc>
+    "inoremap <M-k> <Up><Esc>
+    "inoremap <M-l> <Right><Esc>
 
 """""""""""""""""
 
@@ -230,6 +224,9 @@ syn match twigStatement containedin=twigTagBlock contained skipwhite /\({%-\?\s*
 
 " and context modifiers
 syn match twigStatement containedin=twigTagBlock contained /\<with\(out\)\?\s\+context\>/ skipwhite
+
+" Drupal theme files
+au BufRead,BufNewFile *.theme set filetype=php
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
