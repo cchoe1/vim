@@ -18,6 +18,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-vdebug/vdebug'
 Plugin 'itchyny/calendar.vim'
 Plugin 'ervandew/supertab'
+Plugin 'posva/vim-vue' " vue syntax
+Plugin 'nelsyeung/twig.vim'  " twig syntax highlighting
+Plugin 'fatih/vim-go'
+Plugin 'octol/vim-cpp-enhanced-highlight' "C++ syntax
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -120,8 +124,8 @@ hi StatusLineNC ctermfg=Black ctermbg=White cterm=NONE
 
 let g:vdebug_options = {}
 let g:vdebug_options['background_listener'] = 1
-let g:vdebug_options['ide_key'] = 'xdebug'
-let g:vdebug_options['idekey'] = 'xdebug'
+let g:vdebug_options['ide_key'] = 'vdebug'
+let g:vdebug_options['idekey'] = 'vdebug'
 let g:vdebug_options['break_on_open'] = 1
 "let g:vdebug_options = {'server': 'localhost'}
 "let g:vdebug_options = {'port': '32774'}
