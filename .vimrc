@@ -67,7 +67,6 @@ if $HOME=='/root'
   endif
   let &runtimepath = substitute(&runtimepath, $HOME, '/home/'.rtuser, 'g')
 endif
->>>>>>> 40a1b79f136cadfd779ad6a97c1f5ae856f480c6
 
 filetype plugin indent on
 syntax on
