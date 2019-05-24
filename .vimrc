@@ -22,6 +22,8 @@ Plugin 'posva/vim-vue' " vue syntax
 Plugin 'nelsyeung/twig.vim'  " twig syntax highlighting
 Plugin 'fatih/vim-go'
 Plugin 'octol/vim-cpp-enhanced-highlight' "C++ syntax
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,6 +46,8 @@ filetype plugin indent on
 syntax on
 syntax enable
 colorscheme peachpuff
+
+command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 
 """""""""""""""""""
 " Settings
