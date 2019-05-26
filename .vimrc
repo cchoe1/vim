@@ -1,3 +1,6 @@
+"Mac ctags fix
+let g:easytags_cmd = '/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 let g:calendar_task_delete = 1
@@ -14,6 +17,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'xolox/vim-misc'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-vdebug/vdebug'
 Plugin 'itchyny/calendar.vim'
@@ -22,8 +26,9 @@ Plugin 'posva/vim-vue' " vue syntax
 Plugin 'nelsyeung/twig.vim'  " twig syntax highlighting
 Plugin 'fatih/vim-go'
 Plugin 'octol/vim-cpp-enhanced-highlight' "C++ syntax
-Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+Plugin 'itchyny/lightline.vim'
+Plugin 'phpstan/vim-phpstan'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -81,6 +86,10 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 set fillchars+=vert:.
+
+hi CursorLine   cterm=NONE ctermbg=green ctermfg=white guibg=green guifg=white
+hi CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 
 """""""""""""""""""
