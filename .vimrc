@@ -27,6 +27,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'phpstan/vim-phpstan'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'mattn/emmet-vim'
+Plugin 'othree/csscomplete.vim'
+Plugin 'jsit/sasscomplete.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -45,12 +47,14 @@ if $HOME=='/root'
   let &runtimepath = substitute(&runtimepath, $HOME, '/home/'.rtuser, 'g')
 endif
 
-filetype plugin indent on
+filetype plugin on
 syntax on
 syntax enable
-colorscheme peachpuff
+colorscheme monokai
+set omnifunc=syntaxcomplete#Complete
 
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
+
 
 """""""""""""""""""
 " Settings
@@ -91,6 +95,7 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " Emmet
 nnoremap <c-z> <nop>
+nnoremap <C-w><C-c> <nop>
 let g:user_emmet_leader_key='<C-z>'
 
 
@@ -107,6 +112,8 @@ nmap <C-c> <Esc>
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
 nmap nh :noh<CR>
+map <C-w>- :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-w>[ :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 set pastetoggle=<C-P>
 
