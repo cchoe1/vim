@@ -44,6 +44,7 @@ filetype plugin indent on
 syntax on
 syntax enable
 colorscheme peachpuff
+let g:go_version_warning = 0
 
 """""""""""""""""""
 " Settings
