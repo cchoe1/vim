@@ -1,3 +1,4 @@
+
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 let g:calendar_task_delete = 1
@@ -22,6 +23,12 @@ Plugin 'posva/vim-vue' " vue syntax
 Plugin 'nelsyeung/twig.vim'  " twig syntax highlighting
 Plugin 'fatih/vim-go'
 Plugin 'octol/vim-cpp-enhanced-highlight' "C++ syntax
+Plugin 'itchyny/lightline.vim'
+Plugin 'phpstan/vim-phpstan'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'mattn/emmet-vim'
+Plugin 'othree/csscomplete.vim'
+Plugin 'jsit/sasscomplete.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -40,11 +47,14 @@ if $HOME=='/root'
   let &runtimepath = substitute(&runtimepath, $HOME, '/home/'.rtuser, 'g')
 endif
 
-filetype plugin indent on
+filetype plugin on
 syntax on
 syntax enable
-colorscheme peachpuff
 let g:go_version_warning = 0
+colorscheme monokai
+set omnifunc=syntaxcomplete#Complete
+
+command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
 
 """""""""""""""""""
 " Settings
@@ -79,6 +89,15 @@ set nofoldenable
 set foldlevel=2
 set fillchars+=vert:.
 
+hi CursorLine   cterm=NONE ctermbg=green ctermfg=white guibg=green guifg=white
+hi CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+" Emmet
+nnoremap <c-z> <nop>
+nnoremap <C-w><C-c> <nop>
+let g:user_emmet_leader_key='<C-z>'
+
 
 """""""""""""""""""
 " Localized Settings
@@ -93,6 +112,8 @@ nmap <C-c> <Esc>
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
 nmap nh :noh<CR>
+map <C-w>- :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-w>[ :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 set pastetoggle=<C-P>
 
